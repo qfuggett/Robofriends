@@ -21,6 +21,7 @@ import Card from './Card';
 //     )
 // }
 
+//A pure component that receives props and returns information
 const Cardlist = ({ robots }) => {
 
     return (
