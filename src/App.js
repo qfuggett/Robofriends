@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import Cardlist from './Cardlist';
 import SearchBox from './SearchBox';
-import { robots } from './Robots';
 import './App.css';
 
 
 class App extends Component {
+//Considered a smart component because it has state
 
   //An object that declares the state
   constructor() {
@@ -13,9 +13,15 @@ class App extends Component {
     super()
     //An object that describes your application, that can change and affect your app - lives in the parent component
     this.state = {
-      robots: robots,
+      robots: [],
       searchfield: ''
     }
+  }
+
+  componentDidMount() {
+    fetch('https://jsonplaceholder.typicode.com/users')
+      .then(response => response.json())
+      .then(users => this.setState({ robots: users}));
   }
 
 
@@ -31,14 +37,18 @@ class App extends Component {
         return robot.name.toLowerCase().includes(this.state.searchfield.toLowerCase());
       })
 
-      return (
-        <div className='tc'>
-          <h1 className='f1'>Robofriends</h1>
-          <SearchBox searchChange={this.onSearchChange}/>
-          <Cardlist robots={filteredRobots}/>
-        </div>
-      );
+      if (this.state.robots.length === 0) {
+        return <h1>Loading...</h1>
+      } else {
+          return (
+            <div className='tc'>
+              <h1 className='f1'>Robofriends</h1>
+              <SearchBox searchChange={this.onSearchChange}/>
+              <Cardlist robots={filteredRobots}/>
+            </div>
+          );
       }
+    }
 }
 
 export default App;
