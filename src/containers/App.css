@@ -2,7 +2,7 @@
   font-family: 'SEGA LOGO FONT';
   font-style: normal;
   font-weight: normal;
-  src: local('SEGA LOGO FONT'), url('/Users/queentesa/Code/robofriends/robofriends/src/SEGA.woff') format('woff');
+  src: local('SEGA LOGO FONT'), url('/Users/queentesa/Code/robofriends/robofriends/src/containers/SEGA.woff') format('woff');
   }
 
   h1 {
